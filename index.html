@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Rei da Net VPN | Conecte-se com segurança</title>
+    <!-- Font Awesome 6 (ícones modernos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Poppins e Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #faf7f0 0%, #fff4e6 100%);
+            font-family: 'Inter', sans-serif;
+            color: #2d2a24;
+            padding: 1.5rem;
+            line-height: 1.5;
+        }
+
+        /* container principal */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(2px);
+            border-radius: 48px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            padding: 2rem 2rem 3rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        /* cabeçalho com o Leão moderno + coroa */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .lion-crown {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #ffb347 0%, #ff7e05 100%);
+            padding: 0.8rem 2rem;
+            border-radius: 120px;
+            box-shadow: 0 10px 20px rgba(255, 110, 0, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .lion-crown i {
+            font-size: 2.9rem;
+            color: #fff;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .lion-crown i.fa-crown {
+            font-size: 2.5rem;
+            color: #ffec80;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.7rem;
+            font-weight: 800;
+            background: linear-gradient(120deg, #c47d2e, #f5a623);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            margin-top: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #5a4a32;
+            max-width: 600px;
+            margin: 0.6rem auto 0;
+            font-weight: 500;
+        }
+
+        .badge-vpn {
+            display: inline-block;
+            background: rgba(0,0,0,0.05);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #b96f0e;
+            margin-top: 0.8rem;
+        }
+
+        /* grid dos passos */
+        .steps-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2.5rem 0 2rem;
+        }
+
+        .step-card {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #f6a821;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
+            background: #ffffff;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .step-number {
+            background: #fea31b;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 6px 12px rgba(254, 163, 27, 0.3);
+        }
+
+        .step-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            color: #2e241a;
+            letter-spacing: -0.3px;
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            color: #f39200;
+            margin-left: auto;
+        }
+
+        .step-content {
+            padding-left: 0.5rem;
+            color: #2c2b28;
+            font-weight: 500;
+        }
+
+        .step-content p {
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            background: #fff1e0;
+            padding: 1rem;
+            border-radius: 28px;
+            margin: 1rem 0;
+            border: 1px solid #ffddb0;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(95deg, #0b3b3f, #1c6d5e);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .btn-download i {
+            font-size: 1.4rem;
+        }
+
+        .btn-download:hover {
+            transform: scale(1.02);
+            background: linear-gradient(95deg, #0e4a4f, #248277);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .simulate-card {
+            background: #fef7e8;
+            border-radius: 36px;
+            padding: 1.8rem;
+            margin-top: 2rem;
+            border: 1px solid #ffda99;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .simulate-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #b45f06;
+        }
+
+        .input-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #4e3a28;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 60px;
+            border: 1px solid #e2cba4;
+            background: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: #f6a821;
+            box-shadow: 0 0 0 3px rgba(246,168,33,0.2);
+        }
+
+        .btn-connect {
+            background: #ff9800;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #2c1b0c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.2s;
+            cursor: pointer;
+            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-connect:hover {
+            background: #e68900;
+            transform: scale(0.98);
+            color: white;
+        }
+
+        .alert-msg {
+            background: #e6f4ea;
+            border-left: 5px solid #2e7d32;
+            padding: 12px 18px;
+            border-radius: 28px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.85rem;
+            color: #7b6b56;
+            border-top: 1px dashed #f0cf9c;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 0.8rem;
+            }
+            .container {
+                padding: 1.2rem;
+            }
+            .step-card {
+                padding: 1.2rem;
+            }
+            .step-title {
+                font-size: 1.3rem;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .lion-crown i {
+                font-size: 2rem;
+            }
+        }
+
+        .operators-note {
+            background: #faeedb;
+            border-radius: 28px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <div class="lion-crown">
+            <i class="fas fa-lion"></i>
+            <i class="fas fa-crown"></i>
+        </div>
+        <h1>REI DA NET <span style="background: linear-gradient(120deg,#f7b42c,#fc8e2c); background-clip:text; -webkit-background-clip:text; color:transparent;">VPN</span></h1>
+        <p>Conecte-se com soberania e velocidade • Proteção e estabilidade com o Leão da Net</p>
+        <div class="badge-vpn"><i class="fas fa-shield-hart"></i> VPN Turbo • Sem travamentos</div>
+    </div>
+
+    <!-- PASSO A PASSO DETALHADO -->
+    <div class="steps-grid">
+        <!-- PASSO 1 - DOWNLOAD APK -->
+        <div class="step-card">
+            <div class="step-header">
+                <span class="step-number">1</span>
+                <span class="step-title">Baixar o APK oficial</span>
+                <i class="fas fa-download step-icon"></i>
+            </div>
+            <div class="step-content">
+                <p>🔗 Clique no botão abaixo para fazer o download do aplicativo <strong>REI DA NET LITE 4.6.1.apk</strong> diretamente do Google Drive (link seguro e verificado).</p>
+                <div class="highlight">
+                    <a class="btn-download" href="https://drive.google.com/file/d/1esa3JK47TXxnz7QnjMMocGPr0gbSrH15/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-google-drive"></i> Baixar APK via Google Drive
+                    </a>
+                    <p style="margin-top: 12px; font-size: 0.85rem;"><i class="fas fa-info-circle"></i> Após clicar, aguarde a página do Drive. Clique no ícone de download (seta para baixo) ou em "Fazer download".</p>
+                </div>
+                <p><i class="fas fa-mobile-alt"></i> <strong>Importante:</strong> Se estiver no celular, permita a instalação de aplicativos de fontes desconhecidas:
+                    <em>Configurações > Segurança > Instalar apps desconhecidos</em> (varia conforme modelo).</p>
+            </div>
+        </div>
+
+        <!-- PASSO 2 - INSTALAÇÃO DO APLICATIVO -->
+        <div class="step-card">
+            <div class="step-header">
+                <span class="step-number">2</span>
+                <span class="step-title">Instalar o App</span>
+                <i class="fas fa-cog step-icon"></i>
+            </div>
+            <div class="step-content">
+                <p>📲 Após o download, localize o arquivo <strong>REI DA NET LITE 4.6.1.apk</strong> na pasta de Downloads e toque nele. Confirme a instalação clicando em <strong>“Instalar”</strong>.</p>
+                <div class="highlight">
+                    <i class="fas fa-check-circle" style="color:#2e7d32;"></i> <strong>Dica:</strong> Caso apareça um aviso de "Instalação bloqueada", autorize manualmente nas configurações de segurança. O aplicativo é 100% seguro e testado.
+                </div>
+                <p>✔️ Ao final, clique em <strong>"Abrir"</strong> ou localize o ícone do Rei da Net na tela inicial.</p>
+            </div>
+        </div>
+
+        <!-- PASSO 3 - ABRIR E PREPARAR CREDENCIAIS -->
+        <div class="step-card">
+            <div class="step-header">
+                <span class="step-number">3</span>
+                <span class="step-title">Acesse o App & Credenciais</span>
+                <i class="fas fa-key step-icon"></i>
+            </div>
+            <div class="step-content">
+                <p>🦁 Abra o aplicativo <strong>"REI DA NET LITE"</strong>. Na tela inicial, você verá os campos para <strong>USUÁRIO</strong> e <strong>SENHA</strong> fornecidos pela equipe de suporte (ou pelo seu revendedor).</p>
+                <div class="operators-note">
+                    <i class="fas fa-id-card"></i> As credenciais são pessoais e intransferíveis. Caso não possua, solicite ao administrador da VPN.
+                </div>
+                <p style="margin-top: 12px;">✏️ Preencha exatamente como lhe foi enviado. Exemplo fictício: usuario@reidanet / senha*2025 (use os dados recebidos).</p>
+            </div>
+        </div>
+
+        <!-- PASSO 4 - SELECIONAR OPERADORA -->
+        <div class="step-card">
+            <div class="step-header">
+                <span class="step-number">4</span>
+                <span class="step-title">Escolha sua operadora</span>
+                <i class="fas fa-signal step-icon"></i>
+            </div>
+            <div class="step-content">
+                <p>📡 Dentro do app, localize o campo ou menu <strong>"Operadora" / "Operadora de internet"</strong>. Selecione a operadora correspondente ao seu chip de dados móveis (Vivo, Claro, TIM, Oi ou demais regiões).</p>
+                <div class="highlight">
+                    <i class="fas fa-tachometer-alt"></i> Escolher a operadora correta melhora a velocidade e estabilidade da VPN. Caso não saiba, teste uma por uma até conectar.
+                </div>
+                <p>✅ Se você usa Wi-Fi, escolha a operadora da sua rede móvel principal ou a que tiver melhor sinal.</p>
+            </div>
+        </div>
+
+        <!-- PASSO 5 - CLICAR EM CONECTAR -->
+        <div class="step-card">
+            <div class="step-header">
+                <span class="step-number">5</span>
+                <span class="step-title">Conectar e Navegar</span>
+                <i class="fas fa-plug step-icon"></i>
+            </div>
+            <div class="step-content">
+                <p>⚡ Após preencher usuário, senha e operadora, clique no botão <strong style="background:#f6a82120; padding:4px 12px; border-radius:30px;">🔌 CONECTAR</strong>. Aguarde alguns segundos enquanto a VPN estabelece a tunelagem segura.</p>
+                <p>🟢 Quando o status mudar para <strong>"Conectado"</strong> ou aparecer um ícone de cadeado, sua internet estará protegida e com acesso liberado! Pronto para usar o Rei da Net.</p>
+                <div class="alert-msg">
+                    <i class="fas fa-shield-alt"></i> Dica de ouro: Mantenha o aplicativo em segundo plano. Para desconectar, basta voltar ao app e tocar em "Desconectar".
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÁREA INTERATIVA: SIMULAÇÃO DO PROCESSO (para melhor entendimento) -->
+    <div class="simulate-card">
+        <div class="simulate-title">
+            <i class="fas fa-hand-pointer"></i> 
+            Simulação interativa (Entenda o fluxo)
+        </div>
+        <p style="margin-bottom: 1.2rem; font-weight: 500;">🕹️ Abaixo você pode visualizar como inserir as informações no aplicativo real. Preencha com os dados <strong>fornecidos pelo suporte</strong> e teste o clique. <em>(somente demonstração didática)</em></p>
+        
+        <div class="input-group">
+            <label><i class="fas fa-user"></i> Usuário (fornecido)</label>
+            <input type="text" id="demoUser" placeholder="Ex: rei@datanet.com / usuário que você recebeu">
+        </div>
+        <div class="input-group">
+            <label><i class="fas fa-lock"></i> Senha (fornecida)</label>
+            <input type="password" id="demoPass" placeholder="Digite a senha pessoal">
+        </div>
+        <div class="input-group">
+            <label><i class="fas fa-tower-cell"></i> Selecione sua operadora</label>
+            <select id="demoOperator">
+                <option value="Vivo">Vivo</option>
+                <option value="Claro">Claro</option>
+                <option value="TIM">TIM</option>
+                <option value="Oi">Oi</option>
+                <option value="Outra">Outra / Regional</option>
+            </select>
+        </div>
+        <button class="btn-connect" id="simulateConnectBtn">
+            <i class="fas fa-link"></i> CONECTAR (Simulação)
+        </button>
+        <div id="simulateFeedback" class="alert-msg" style="display: none; margin-top: 20px;"></div>
+        <p style="font-size: 0.8rem; margin-top: 16px; color:#b97f2e;"><i class="fas fa-info-circle"></i> No aplicativo real, após clicar em "Conectar" a VPN será ativada instantaneamente e seu IP será alterado. Esta simulação apenas reproduz a sequência de passos.</p>
+    </div>
+    
+    <div class="footer-note">
+        <i class="fas fa-crown"></i> Rei da Net VPN • tecnologia de ponta para sua liberdade digital • <i class="fas fa-lion"></i> Suporte 24h pelo canal oficial.
+        <br><strong>Lembre-se:</strong> Utilize as credenciais recebidas pelo seu fornecedor. Mantenha o app atualizado.
+    </div>
+</div>
+
+<script>
+    // Simulação interativa para ensinar a sequência, mas sem conexão real (apenas feedback educativo)
+    const connectBtn = document.getElementById('simulateConnectBtn');
+    const feedbackDiv = document.getElementById('simulateFeedback');
+    const userInput = document.getElementById('demoUser');
+    const passInput = document.getElementById('demoPass');
+    const operatorSelect = document.getElementById('demoOperator');
+
+    connectBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const userValue = userInput.value.trim();
+        const passValue = passInput.value.trim();
+        
+        if(userValue === "" || passValue === "") {
+            feedbackDiv.style.display = "block";
+            feedbackDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ⚠️ Preencha o USUÁRIO e a SENHA fornecidos pelo suporte (no app real, insira os dados corretos).';
+            feedbackDiv.style.background = "#ffe6e6";
+            feedbackDiv.style.borderLeftColor = "#d32f2f";
+            return;
+        }
+        
+        // Simulação bem sucedida
+        const operadora = operatorSelect.options[operatorSelect.selectedIndex].text;
+        feedbackDiv.style.display = "block";
+        feedbackDiv.style.background = "#e0f2e9";
+        feedbackDiv.style.borderLeftColor = "#2e7d32";
+        feedbackDiv.innerHTML = `<i class="fas fa-check-circle"></i> ✅ Passo simulado com sucesso! <br> 
+        <strong>Processo:</strong> Usuário <strong>${userValue.substring(0,20)}</strong> • Operadora: ${operadora} <br>
+        🦁 No aplicativo REAL, clique em "CONECTAR" e aguarde a conexão VPN. Você estará navegando com a segurança do Rei da Net. 
+        <br><small>Certifique-se de ter instalado o APK e concedido as permissões.</small>`;
+        
+        // Rolar suavemente para a simulação
+        setTimeout(() => {
+            feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    });
+    
+    // Dica extra para limpar o feedback se o usuário mudar dados
+    userInput.addEventListener('input', () => {
+        if(feedbackDiv.style.display === 'block') feedbackDiv.style.display = 'none';
+    });
+    passInput.addEventListener('input', () => {
+        if(feedbackDiv.style.display === 'block') feedbackDiv.style.display = 'none';
+    });
+    operatorSelect.addEventListener('change', () => {
+        if(feedbackDiv.style.display === 'block') feedbackDiv.style.display = 'none';
+    });
+    
+    // também exibe lembrete suave ao carregar
+    window.addEventListener('load', () => {
+        // pequena dica no console só para fins educativos
+        console.log("🦁👑 Rei da Net: Siga os passos, baixe o APK via link e use credenciais válidas!");
+    });
+</script>
+</body>
+</html>
